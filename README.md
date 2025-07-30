@@ -9,8 +9,13 @@ It’s a small but practical improvement that eliminates repetitive tasks and he
 # Daily Standup Generator 📝
 
 Automatically generate your daily standup reports from Git commits and GitHub issues.
+✅ Working prototype: Node.js app that fetches Git commits and GitHub issues, then generates a formatted daily standup report.
 
-## Cài đặt
+🎥 Demo: Documentation and visual preview page at http://localhost:3000.
+
+🪞 Reflection: This tool helps eliminate routine overhead and keeps my morning workflow smooth and efficient.
+
+## Install
 
 ```bash
 npm install
