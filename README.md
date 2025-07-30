@@ -8,7 +8,7 @@ It’s a small but practical improvement that eliminates repetitive tasks and he
 
 # Daily Standup Generator 📝
 
-Tự động tạo báo cáo daily standup từ Git & GitHub.
+Automatically generate your daily standup reports from Git commits and GitHub issues.
 
 ## Cài đặt
 
