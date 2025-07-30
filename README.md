@@ -35,6 +35,15 @@ It's a small but practical improvement that eliminates repetitive tasks and help
 
 ---
 
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/tuanhne157/daily-standup-generator.git
+cd daily-standup-generator
+npm install
+
+---
+
 ## 🚀 Run the App
 
 npm start
@@ -43,6 +52,8 @@ Access the preview interface: http://localhost:3000
 Click 📤 Generate & Save Report to generate and email the report
 View report history and optionally add blockers
 
+---
+
 ## ⏰ Automatic Scheduler (Daily Emails)
 
 No need to manually run the report each day.
@@ -50,18 +61,19 @@ No need to manually run the report each day.
 npm run scheduler
 In production, the scheduler runs automatically after you run npm start.
 
+---
+
 ## 📧 Email Delivery
+
 Each report is sent to your personal or team email (configure recipients in emailSender.js under to: ...).
 
+---
+
 ## 🖼️ Demo Preview
+
 Interface showing commits, issues, blockers, and report history:
 [▶️ Watch Demo on Google Drive](https://drive.google.com/file/d/1J0_wlYEEm5ol7-4vFaY2t0ONcUEUmHLL/view)
 This demo shows how the app generates standup reports from Git commits and GitHub issues, sends them via email, and displays them in a beautiful interface.
 
-## ⚙️ Installation
 
-```bash
-git clone https://github.com/tuanhne157/daily-standup-generator.git
-cd daily-standup-generator
-npm install
 
