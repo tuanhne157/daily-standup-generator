@@ -23,6 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/', standupRoutes);
 
+// Gọi scheduler sau khi server khởi động (gọi scheduler.js để gửi standup mỗi ngày)
+require('./scheduler');
+
 // Khởi động server
 app.listen(PORT, () => {
   console.log(`🚀 App running at http://localhost:${PORT}`);
