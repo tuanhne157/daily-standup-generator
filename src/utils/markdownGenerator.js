@@ -1,23 +1,45 @@
-const dayjs = require('dayjs');
+// src/utils/markdownGenerator.js
 const fs = require('fs');
 const path = require('path');
+const dayjs = require('dayjs');
+const Report = require('../models/report.model');
+const { sendMail } = require('./emailSender');
 
-function generateMarkdown({ commits, issues }) {
-  const today = dayjs().format('DD/MM/YYYY');
-  const md = `## Daily Standup - ${today}
+async function generateMarkdown({ commits, issues, blockers }) {
+  const today = dayjs().format('YYYY-MM-DD');
 
-**Yesterday:**
-${commits.join('\n') || '- No commits'}
+  const content = `## Daily Standup - ${today}
 
-**Today:**
-${issues.join('\n') || '- No issues assigned'}
+✅ Yesterday:
+${commits.map(c => `- ${c}`).join('\n')}
 
-**Blockers:**
-- None
+📋 Today:
+${issues.map(i => `- #${i.number} ${i.title}\n  👉 ${i.body}`).join('\n\n')}
+
+🚧 Blockers:
+${blockers.length ? blockers.map(b => `- ${b}`).join('\n') : '- None'}
+
+🧑‍💻 Meeting link (if no blockers): ${blockers.length ? '(Blocked)' : 'https://meet.google.com/dok-jnko-vff'}
 `;
 
-  fs.writeFileSync(path.join(__dirname, '../../standup.md'), md);
-  console.log('✅ Generated standup.md');
+  fs.writeFileSync(path.join(__dirname, '../../standup.md'), content);
+
+  await Report.findOneAndUpdate(
+    { date: today },
+    {
+      date: today,
+      commits,
+      issues: issues.map(i => `#${i.number} ${i.title}`),
+      blockers
+    },
+    { upsert: true }
+  );
+
+  await sendMail(content);
+  console.log('✅ Created standup.md and saved to MongoDB');
 }
 
 module.exports = { generateMarkdown };
+
+
+
